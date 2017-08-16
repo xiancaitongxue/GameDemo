@@ -15,7 +15,7 @@ class GameScene: SKScene {
     private var spinnyNode : SKShapeNode?
     
     override func didMove(to view: SKView) {
-        
+        self.backgroundColor = SKColor.black
         // Get label node from scene and store it for use later
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
@@ -35,8 +35,21 @@ class GameScene: SKScene {
                                               SKAction.fadeOut(withDuration: 0.5),
                                               SKAction.removeFromParent()]))
         }
+        let helloLabel = self.createLable(text: "Hello World")
+        helloLabel.position = CGPoint.init(x: self.frame.midX, y: self.frame.midY)
+        self.addChild(helloLabel)
+        
+        
     }
-    
+    func createLable(text:String!) -> SKLabelNode {
+        let label = SKLabelNode.init(text: text)
+        label.fontName = "Chalkduster"
+        label.name = text
+        label.fontSize = 60
+        label.fontColor = SKColor.cyan
+        return label
+        
+    }
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
